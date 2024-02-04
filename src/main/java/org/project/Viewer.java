@@ -1,14 +1,17 @@
 package org.project;
 
+import java.util.List;
+
 public class Viewer {
     private String nickname;
     private int age;
+    private List<Cinema> watchedMovies;
     private int watchedMoviesCount;
 
-    public Viewer(String nickname, int age, int watchedMoviesCount) {
+    public Viewer(String nickname, int age, List<Cinema> watchedMovies) {
         setNickname(nickname);
         setAge(age);
-        setWatchedMoviesCount(watchedMoviesCount);
+        setWatchedMovies(watchedMovies);
     }
 
     public String getNickname() {
@@ -33,14 +36,19 @@ public class Viewer {
         this.age = age;
     }
 
-    public int getWatchedMoviesCount() {
-        return watchedMoviesCount;
+    public List<Cinema> getWatchedMovies() {
+        return watchedMovies;
     }
 
-    public void setWatchedMoviesCount(int watchedMoviesCount) {
-        if (watchedMoviesCount < 0) {
-            throw new IllegalArgumentException("Watched movies count must be greater than zero");
+    public void setWatchedMovies(List<Cinema> watchedMovies) {
+        if (watchedMovies == null) {
+            throw new IllegalArgumentException("Movies list cannot be null");
         }
-        this.watchedMoviesCount = watchedMoviesCount;
+        this.watchedMovies = watchedMovies;
+        this.watchedMoviesCount = watchedMovies.size();
+    }
+
+    public int getWatchedMoviesCount() {
+        return watchedMoviesCount;
     }
 }
